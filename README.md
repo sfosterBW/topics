@@ -1,5 +1,4 @@
 #TODOs 
-* Add linter
 * Push to repo
 * useTopics tests
 * Add github actions
