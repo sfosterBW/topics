@@ -1,8 +1,8 @@
 #TODOs 
 * useTopics tests
 * toTopic and toTopics tests
+* Helper utils functions
 * Add github actions
-* Move weighting to hook
 * Fix test errors
 
 # My Topics Challenge
