@@ -1,7 +1,9 @@
 import React from 'react'
-import Word from './word'
+import Word from '../Word/word'
 
-import useTopics from '../Hooks/useTopics'
+import useTopics from '../../Hooks/useTopics'
+
+import './wordcloud.css'
 
 const WordCloud = () => {
   const { topics } = useTopics()
@@ -10,24 +12,12 @@ const WordCloud = () => {
     return <div>No topics</div>
   }
 
-  const groupingSize = 6
-
-  const getWords = () => {
-    // TODO: Move weighting to topics hook
-    const wordcloudTopics = [...topics].sort((curr, next) => curr.volume + next.volume).map((topic, idx, arr) => ({
-      ...topic,
-      weight: Math.floor(((arr.length - (idx + 1)) / arr.length) * groupingSize)
-    }))
-
-    return wordcloudTopics
-  }
-
   return (
-    <section>
+    <section className="wordcloud">
       <h2>Word cloud</h2>
       <div>
         <ul className="cloud">
-          {getWords().map(({ id, label, sentiment, sentimentScore, volume, weight }) =>
+          {topics.map(({ id, label, sentiment, sentimentScore, volume, weight }) =>
             <Word
               key={id}
               label={label}

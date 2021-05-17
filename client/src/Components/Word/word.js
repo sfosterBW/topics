@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import Sentiment from './sentiment'
+
+import Sentiment from '../Sentiment/sentiment'
+
+import './word.css'
 
 const Word = ({ label, sentiment, sentimentScore, volume, weight }) => {
   const [visible, setVisible] = useState(false)
 
   if (!label || !sentiment || !sentimentScore || !volume || weight === undefined) {
-    console.log(label, sentiment, sentimentScore, volume, weight)
     return null
   }
 

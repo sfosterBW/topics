@@ -1,0 +1,24 @@
+.wordcloud {
+    display: flex;
+    flex-direction: column;
+  }
+  
+ul.cloud {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    line-height: 2.5rem;
+    max-width: 50vw;
+}
+  
+ul.cloud li {
+    cursor: pointer;
+    display: block;
+    font-size: 1.5rem;
+    padding: 0.125rem 0.25rem;
+    text-decoration: none;
+    position: relative;
+}

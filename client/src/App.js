@@ -1,8 +1,10 @@
 import React from 'react'
-import './App.css'
-import WordCloud from './Components/wordcloud'
-import Stats from './Components/stats'
+import WordCloud from './Components/Wordcloud/wordcloud'
+import Stats from './Components/Stats/stats'
+
 import useTopics from './Hooks/useTopics'
+
+import './App.css'
 
 const App = () => {
   const { error, loading } = useTopics()

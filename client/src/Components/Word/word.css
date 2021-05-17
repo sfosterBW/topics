@@ -1,0 +1,20 @@
+.modal {
+    background: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    padding: 1rem;
+    position: fixed;
+    z-index: 1;
+}
+
+.modal button {
+    align-self: flex-end;
+    background: gray;
+    border: 1px solid black;
+    cursor: pointer;
+    font-size: 24px;
+    width: 30px
+}

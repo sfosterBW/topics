@@ -1,6 +1,9 @@
 import React from 'react'
-import Sentiment from './sentiment'
-import useTopics from '../Hooks/useTopics'
+import Sentiment from '../Sentiment/sentiment'
+
+import useTopics from '../../Hooks/useTopics'
+
+import './stats.css'
 
 const Stats = () => {
   const { totalSentiment, totalVolume } = useTopics()

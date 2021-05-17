@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:test": "concurrently --kill-others \"npm run start:client\" \"npm run start:server\" \"cypress run\"",
+    "postinstall": "cd client && npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:client": "npm --prefix client run start",
     "start:server": "npx json-server --port 3001 --watch topics.json",
-    "start": "concurrently \"npm run start:client\" \"npm run start:server\""
+    "start": "concurrently --kill-others \"npm run start:client\" \"npm run start:server\""
   },
   "repository": {
     "type": "git",
@@ -22,5 +25,9 @@
   "homepage": "https://github.com/sfosterBW/topics#readme",
   "dependencies": {
     "concurrently": "^6.1.0"
+  },
+  "devDependencies": {
+    "cypress": "^7.3.0",
+    "start-server-and-test": "^1.12.2"
   }
 }

@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import './sentiment.css'
+
 const Sentiment = ({ label, sentiment, volume }) => {
   if (!sentiment || !volume) {
     return null

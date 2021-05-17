@@ -7,8 +7,12 @@ module.exports = {
     }
   },
   extends: [
+    'plugin:react-hooks/recommended',
     'plugin:react/recommended',
-    'standard'
+    'standard',
+    'plugin:jest/recommended',
+    'plugin:jest/style',
+    'plugin:jest/all'
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -18,7 +22,8 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [
-    'react'
+    'react',
+    'jest'
   ],
   rules: {
   },

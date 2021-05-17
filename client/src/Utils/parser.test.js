@@ -8,82 +8,92 @@ const string = 'test'
 // TODO: Add toTopic test
 // TODO: Add toTopics test
 
-test('parse array', () => {
-  expect(() => parser.parseArray(null)).toThrowError(/array/)
-  expect(() => parser.parseArray(number)).toThrowError(/array/)
-  expect(() => parser.parseArray(object)).toThrowError(/array/)
-  expect(() => parser.parseArray(string)).toThrowError(/array/)
-  expect(() => parser.parseArray(undefined)).toThrowError(/array/)
+describe('parser function', () => {
+  it('parse array', () => {
+    expect.assertions(6)
+    expect(() => parser.parseArray(null)).toThrow(/array/)
+    expect(() => parser.parseArray(number)).toThrow(/array/)
+    expect(() => parser.parseArray(object)).toThrow(/array/)
+    expect(() => parser.parseArray(string)).toThrow(/array/)
+    expect(() => parser.parseArray(undefined)).toThrow(/array/)
 
-  expect(parser.parseArray(array)).toBe(array)
-})
+    expect(parser.parseArray(array)).toBe(array)
+  })
 
-test('parse id', () => {
-  expect(() => parser.parseId(array)).toThrowError(/id/)
-  expect(() => parser.parseId(null)).toThrowError(/id/)
-  expect(() => parser.parseId(number)).toThrowError(/id/)
-  expect(() => parser.parseId(object)).toThrowError(/id/)
-  expect(() => parser.parseId(undefined)).toThrowError(/id/)
+  it('parse id', () => {
+    expect.assertions(6)
+    expect(() => parser.parseId(array)).toThrow(/id/)
+    expect(() => parser.parseId(null)).toThrow(/id/)
+    expect(() => parser.parseId(number)).toThrow(/id/)
+    expect(() => parser.parseId(object)).toThrow(/id/)
+    expect(() => parser.parseId(undefined)).toThrow(/id/)
 
-  expect(parser.parseId(string)).toBe(string)
-})
+    expect(parser.parseId(string)).toBe(string)
+  })
 
-test('parse label', () => {
-  expect(() => parser.parseLabel(array)).toThrowError(/label/)
-  expect(() => parser.parseLabel(null)).toThrowError(/label/)
-  expect(() => parser.parseLabel(number)).toThrowError(/label/)
-  expect(() => parser.parseLabel(object)).toThrowError(/label/)
-  expect(() => parser.parseLabel(undefined)).toThrowError(/label/)
+  it('parse label', () => {
+    expect.assertions(6)
+    expect(() => parser.parseLabel(array)).toThrow(/label/)
+    expect(() => parser.parseLabel(null)).toThrow(/label/)
+    expect(() => parser.parseLabel(number)).toThrow(/label/)
+    expect(() => parser.parseLabel(object)).toThrow(/label/)
+    expect(() => parser.parseLabel(undefined)).toThrow(/label/)
 
-  expect(parser.parseLabel(string)).toBe(string)
-})
+    expect(parser.parseLabel(string)).toBe(string)
+  })
 
-test('parse negative', () => {
-  expect(() => parser.parseNegative(array)).toThrowError(/negative/)
-  expect(() => parser.parseNegative(null)).toThrowError(/negative/)
-  expect(() => parser.parseNegative(object)).toThrowError(/negative/)
-  expect(() => parser.parseNegative(string)).toThrowError(/negative/)
+  it('parse negative', () => {
+    expect.assertions(6)
+    expect(() => parser.parseNegative(array)).toThrow(/negative/)
+    expect(() => parser.parseNegative(null)).toThrow(/negative/)
+    expect(() => parser.parseNegative(object)).toThrow(/negative/)
+    expect(() => parser.parseNegative(string)).toThrow(/negative/)
 
-  expect(parser.parseNegative(number)).toBe(number)
-  expect(parser.parseNegative(undefined)).toBe(undefined)
-})
+    expect(parser.parseNegative(number)).toBe(number)
+    expect(parser.parseNegative(undefined)).toBeUndefined()
+  })
 
-test('parse neutral', () => {
-  expect(() => parser.parseNeutral(array)).toThrowError(/neutral/)
-  expect(() => parser.parseNeutral(null)).toThrowError(/neutral/)
-  expect(() => parser.parseNeutral(object)).toThrowError(/neutral/)
-  expect(() => parser.parseNeutral(string)).toThrowError(/neutral/)
+  it('parse neutral', () => {
+    expect.assertions(6)
+    expect(() => parser.parseNeutral(array)).toThrow(/neutral/)
+    expect(() => parser.parseNeutral(null)).toThrow(/neutral/)
+    expect(() => parser.parseNeutral(object)).toThrow(/neutral/)
+    expect(() => parser.parseNeutral(string)).toThrow(/neutral/)
 
-  expect(parser.parseNeutral(number)).toBe(number)
-  expect(parser.parseNeutral(undefined)).toBe(undefined)
-})
+    expect(parser.parseNeutral(number)).toBe(number)
+    expect(parser.parseNeutral(undefined)).toBeUndefined()
+  })
 
-test('parse positive', () => {
-  expect(() => parser.parsePositive(array)).toThrowError(/positive/)
-  expect(() => parser.parsePositive(null)).toThrowError(/positive/)
-  expect(() => parser.parsePositive(object)).toThrowError(/positive/)
-  expect(() => parser.parsePositive(string)).toThrowError(/positive/)
+  it('parse positive', () => {
+    expect.assertions(6)
+    expect(() => parser.parsePositive(array)).toThrow(/positive/)
+    expect(() => parser.parsePositive(null)).toThrow(/positive/)
+    expect(() => parser.parsePositive(object)).toThrow(/positive/)
+    expect(() => parser.parsePositive(string)).toThrow(/positive/)
 
-  expect(parser.parsePositive(number)).toBe(number)
-  expect(parser.parsePositive(undefined)).toBe(undefined)
-})
+    expect(parser.parsePositive(number)).toBe(number)
+    expect(parser.parsePositive(undefined)).toBeUndefined()
+  })
 
-test('parse sentiment score', () => {
-  expect(() => parser.parseSentimentScore(array)).toThrowError(/sentiment score/)
-  expect(() => parser.parseSentimentScore(null)).toThrowError(/sentiment score/)
-  expect(() => parser.parseSentimentScore(object)).toThrowError(/sentiment score/)
-  expect(() => parser.parseSentimentScore(string)).toThrowError(/sentiment score/)
-  expect(() => parser.parseSentimentScore(undefined)).toThrowError(/sentiment score/)
+  it('parse sentiment score', () => {
+    expect.assertions(6)
+    expect(() => parser.parseSentimentScore(array)).toThrow(/sentiment score/)
+    expect(() => parser.parseSentimentScore(null)).toThrow(/sentiment score/)
+    expect(() => parser.parseSentimentScore(object)).toThrow(/sentiment score/)
+    expect(() => parser.parseSentimentScore(string)).toThrow(/sentiment score/)
+    expect(() => parser.parseSentimentScore(undefined)).toThrow(/sentiment score/)
 
-  expect(parser.parseSentimentScore(number)).toBe(number)
-})
+    expect(parser.parseSentimentScore(number)).toBe(number)
+  })
 
-test('parse volume', () => {
-  expect(() => parser.parseVolume(array)).toThrowError(/volume/)
-  expect(() => parser.parseVolume(null)).toThrowError(/volume/)
-  expect(() => parser.parseVolume(object)).toThrowError(/volume/)
-  expect(() => parser.parseVolume(string)).toThrowError(/volume/)
-  expect(() => parser.parseVolume(undefined)).toThrowError(/volume/)
+  it('parse volume', () => {
+    expect.assertions(6)
+    expect(() => parser.parseVolume(array)).toThrow(/volume/)
+    expect(() => parser.parseVolume(null)).toThrow(/volume/)
+    expect(() => parser.parseVolume(object)).toThrow(/volume/)
+    expect(() => parser.parseVolume(string)).toThrow(/volume/)
+    expect(() => parser.parseVolume(undefined)).toThrow(/volume/)
 
-  expect(parser.parseVolume(number)).toBe(number)
+    expect(parser.parseVolume(number)).toBe(number)
+  })
 })

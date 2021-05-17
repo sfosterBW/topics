@@ -16,18 +16,22 @@ const totalPositiveSentiment = 12
 const sumArray = [1, 50, 32, 5]
 const sumTotal = 88
 
-test('getSum adds up', () => {
-  const total = sumArray.reduce(helper.getSum, 0)
-  expect(total).toBe(sumTotal)
-})
+describe('helper function', () => {
+  it('getSum adds up', () => {
+    expect.assertions(1)
+    const total = sumArray.reduce(helper.getSum, 0)
+    expect(total).toBe(sumTotal)
+  })
 
-test('getSentiment adds up', () => {
-  const negativeTotal = helper.getTotalSentiment(sentimentArray, 'negative')
-  expect(negativeTotal).toBe(totalNegativeSentiment)
+  it('getSentiment adds up', () => {
+    expect.assertions(3)
+    const negativeTotal = helper.getTotalSentiment(sentimentArray, 'negative')
+    expect(negativeTotal).toBe(totalNegativeSentiment)
 
-  const neutralTotal = helper.getTotalSentiment(sentimentArray, 'neutral')
-  expect(neutralTotal).toBe(totalNeutralSentiment)
+    const neutralTotal = helper.getTotalSentiment(sentimentArray, 'neutral')
+    expect(neutralTotal).toBe(totalNeutralSentiment)
 
-  const positiveTotal = helper.getTotalSentiment(sentimentArray, 'positive')
-  expect(positiveTotal).toBe(totalPositiveSentiment)
+    const positiveTotal = helper.getTotalSentiment(sentimentArray, 'positive')
+    expect(positiveTotal).toBe(totalPositiveSentiment)
+  })
 })
