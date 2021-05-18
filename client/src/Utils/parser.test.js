@@ -1,12 +1,10 @@
 import * as parser from './parser'
+import data from './topics.json'
 
 const array = ['test', 1, 'this']
 const number = 7
 const object = { test: 'this', number: 1 }
 const string = 'test'
-
-// TODO: Add toTopic test
-// TODO: Add toTopics test
 
 describe('parser function', () => {
   it('parse array', () => {
@@ -95,5 +93,47 @@ describe('parser function', () => {
     expect(() => parser.parseVolume(undefined)).toThrow(/volume/)
 
     expect(parser.parseVolume(number)).toBe(number)
+  })
+
+  it('toTopic turns an object into a topic', () => {
+    expect.assertions(11)
+
+    expect(parser.toTopic(data.topics[0]).burst).toBeUndefined()
+    expect(parser.toTopic(data.topics[0]).days).toBeUndefined()
+    expect(parser.toTopic(data.topics[0]).pageType).toBeUndefined()
+    expect(parser.toTopic(data.topics[0]).queries).toBeUndefined()
+    expect(parser.toTopic(data.topics[0]).type).toBeUndefined()
+    expect(parser.toTopic(data.topics[0]).weigth).toBeUndefined()
+
+    expect(parser.toTopic(data.topics[0]).id).toStrictEqual(data.topics[0].id)
+    expect(parser.toTopic(data.topics[0]).label).toStrictEqual(data.topics[0].label)
+    expect(parser.toTopic(data.topics[0]).sentiment).toStrictEqual(data.topics[0].sentiment)
+    expect(parser.toTopic(data.topics[0]).sentimentScore).toStrictEqual(data.topics[0].sentimentScore)
+    expect(parser.toTopic(data.topics[0]).volume).toStrictEqual(data.topics[0].volume)
+  })
+
+  it('toTopic throws an error if there is a missing id', () => {
+    expect.assertions(1)
+
+    const { id, ...topicWithoutId } = data.topics[0]
+
+    expect(() => parser.toTopic(topicWithoutId)).toThrow(Error('Incorrect or missing id: undefined'))
+  })
+
+  // TODO: Add toTopics test
+  it('toTopics turns an array of objects into an array of topics', () => {
+    expect.assertions(1)
+    const topics = parser.toTopics(data.topics)
+
+    expect(topics).toHaveLength(data.topics.length)
+  })
+
+  it('toTopics adds weighting based on the array', () => {
+    expect.assertions(3)
+    const weights = parser.toTopics(data.topics).map(({weight}) => weight)
+
+    expect(weights).toHaveLength(data.topics.length)
+    expect(Math.max(...weights)).toStrictEqual(5)
+    expect(Math.min(...weights)).toStrictEqual(0)
   })
 })

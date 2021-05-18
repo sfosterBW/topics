@@ -1,19 +1,18 @@
 const getSum = (total, currentValue) => total + currentValue
 
-const getTotalSentiment = (data, name) => {
-  return data
-    .map(topic => topic.sentiment[name] || undefined)
-    .filter(field => field !== undefined)
+const getTotal = (array, field) => {
+  return array
+    .map(i => i[field] || undefined)
+    .filter(j => j !== undefined)
     .reduce(getSum, 0)
 }
 
-// TODO: Add tests for getWeights
 const getWeights = (array, field, groupingSize) => {
   return [...array]
-    .sort((curr, next) => curr[field] + next[field])
+    .sort((curr, next) => next[field] - curr[field])
     .map(({ id }, idx, arr) => ({
       id,
-      weight: Math.floor(((arr.length - (idx + 1)) / arr.length) * groupingSize)
+      weight: Math.floor(((arr.length - (idx + 1)) / arr.length) * groupingSize) // Split into equally sized groups
     }))
 }
 
@@ -26,4 +25,4 @@ const shuffleArray = (unshuffledArray) => {
   return shuffledArray
 }
 
-export { getSum, getTotalSentiment, getWeights, shuffleArray }
+export { getSum, getTotal, getWeights, shuffleArray }

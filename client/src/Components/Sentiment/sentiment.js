@@ -22,7 +22,7 @@ const Sentiment = ({ label, sentiment, volume }) => {
       </div>
       <div>
         <h3>Positive mentions:</h3>
-        <p style={{ color: 'green' }}>{sentiment.negative || 'N/A'}</p>
+        <p style={{ color: 'green' }}>{sentiment.positive || 'N/A'}</p>
       </div>
       <div>
         <h3>Neutral mentions:</h3>
@@ -30,7 +30,7 @@ const Sentiment = ({ label, sentiment, volume }) => {
       </div>
       <div>
         <h3>Negative mentions:</h3>
-        <p style={{ color: 'red' }}>{sentiment.positive || 'N/A'}</p>
+        <p style={{ color: 'red' }}>{sentiment.negative || 'N/A'}</p>
       </div>
     </div>
   )

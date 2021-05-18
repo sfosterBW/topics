@@ -1,9 +1,6 @@
 #TODOs 
-* useTopics tests
-* toTopic and toTopics tests
-* Helper utils functions
+* Decide on randomise function
 * Add github actions
-* Fix test errors
 
 # My Topics Challenge
 This is a technical test based on [these requirements](https://gist.github.com/grahamscott/65b43572ad18c5fbdd87).

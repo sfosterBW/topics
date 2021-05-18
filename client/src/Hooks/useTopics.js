@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import axios from 'axios'
-import { getSum, getTotalSentiment, getWeights, shuffleArray } from '../Utils/helpers'
+import { getTotal } from '../Utils/helpers'
 import { toTopics } from '../Utils/parser'
 import { url } from '../Utils/consts'
 
@@ -24,23 +24,15 @@ export const TopicsProvider = (props) => {
       setTotalVolume()
 
       try {
-        const groupingSize = 6
         const response = await axios.get(`${url}/topics`, { cancelToken: source.token })
-        const rawData = toTopics(response.data)
-        const weights = getWeights(rawData, 'volume', groupingSize)
-        const data = rawData.map(topic => ({ ...topic, ...weights.find(({ id }) => id === topic.id) }))
-        console.log(data)
-        setTopics(shuffleArray(data))
+        const data = toTopics(response.data)
+        setTopics(data)
         setTotalSentiment({
-          negative: getTotalSentiment(data, 'negative'),
-          neutral: getTotalSentiment(data, 'neutral'),
-          positive: getTotalSentiment(data, 'positive')
+          negative: getTotal(data.map(({ sentiment }) => sentiment), 'negative'),
+          neutral: getTotal(data.map(({ sentiment }) => sentiment), 'neutral'),
+          positive: getTotal(data.map(({ sentiment }) => sentiment), 'positive')
         })
-        setTotalVolume(data
-          .filter(topic => topic.volume !== undefined)
-          .map(topic => topic.volume)
-          .reduce(getSum, 0)
-        )
+        setTotalVolume(getTotal(data, 'volume'))
         setLoading(false)
       } catch (error) {
         if (axios.isCancel(error)) return

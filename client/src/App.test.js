@@ -1,21 +1,34 @@
+/* eslint-disable jest/no-hooks */
 import React from 'react'
 import { render, screen } from './Utils/test-utils'
+import { rest } from 'msw'
+import { setupServer } from 'msw/node'
 
 import App from './App'
 
-import * as data from './Utils/topics.json'
+import data from './Utils/topics.json'
+
+const totalSentiment = { negative: 100, neutral: 23456 }
+const totalVolume = 123
+
+const server = setupServer(
+  rest.get('http://localhost:3000/topics', (_req, res, ctx) => {
+    return res(ctx.json(data.topics))
+  })
+)
 
 describe('app component', () => {
+  beforeAll(() => server.listen())
+  afterEach(() => server.resetHandlers())
+  afterAll(() => server.close())
+
   it('has a h1 that says My Topics Challenge', () => {
     expect.assertions(1)
-    render(<App />, { value: data })
+    render(<App />)
 
     const h1 = screen.getByText(/My Topics Challenge/i)
     expect(h1).toBeInTheDocument()
   })
-
-  const totalSentiment = { negative: 100, neutral: 23456 }
-  const totalVolume = 123
 
   it('displays the mentions', async () => {
     expect.assertions(8)

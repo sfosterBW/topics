@@ -73,7 +73,7 @@ describe('word component', () => {
   })
 
   it('on click of word, modal renders with sentiment info', async () => {
-    expect.assertions(3)
+    expect.assertions(5)
     render(
       <Word
         label={label}
@@ -90,14 +90,14 @@ describe('word component', () => {
 
     await waitFor(() => {
       userEvent.click(labelText)
+      const sentimentTitle = screen.queryByText(/Information on topic/)
+      expect(sentimentTitle).toBeInTheDocument()
     })
-    const sentimentTitle = await screen.findByText(/Information on topic/)
-    expect(sentimentTitle).toBeInTheDocument()
 
     await waitFor(() => {
       userEvent.click(labelText)
+      const sentimentTitleUpdate = screen.queryByText(/Information on topic/)
+      expect(sentimentTitleUpdate).not.toBeInTheDocument()
     })
-    const sentimentTitleUpdate = screen.queryByText(/Information on topic/)
-    expect(sentimentTitleUpdate).not.toBeInTheDocument()
   })
 })

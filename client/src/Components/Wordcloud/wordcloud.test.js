@@ -28,6 +28,6 @@ describe('wordcloud component', () => {
 
     const words = screen.queryAllByTestId('word-in-cloud').map(li => li.textContent)
     const testWords = data.topics.map(({ label }) => label)
-    expect(words).toEqual(testWords)
+    expect(words).toStrictEqual(testWords)
   })
 })

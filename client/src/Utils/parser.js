@@ -1,10 +1,12 @@
+import { getWeights } from './helpers'
+
 const isString = (text) => {
   return typeof text === 'string' || text instanceof String
 }
 
 const parseArray = (array) => {
   if (!array || !Array.isArray(array)) {
-    throw new Error(`Incorrect or missing an array ${String(array)}`)
+    throw new Error(`Incorrect or missing an array ${JSON.stringify(array)}`)
   }
 
   return array
@@ -83,7 +85,13 @@ const toTopic = (object) => {
 
 const toTopics = (array) => {
   const topicsArray = parseArray(array)
-  return topicsArray.map(topic => toTopic(topic))
+  const groupingSize = 6
+  const weightByVolume = getWeights(topicsArray, 'volume', groupingSize)
+  const weightedTopics = topicsArray.map(topic => ({
+    ...toTopic(topic),
+    weight: weightByVolume.find(({ id }) => id === topic.id).weight
+  }))
+  return weightedTopics
 }
 
 export {
