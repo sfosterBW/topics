@@ -24,12 +24,12 @@ const weightArray = [
   { id: '6', volume: 5 }
 ]
 const sortedWeightIds = [
-  {id: "2", weight: 5}, 
-  {id: "3", weight: 4}, 
-  {id: "6", weight: 3}, 
-  {id: "4", weight: 2}, 
-  {id: "5", weight: 1}, 
-  {id: "1", weight: 0}
+  { id: '2', weight: 5 },
+  { id: '3', weight: 4 },
+  { id: '6', weight: 3 },
+  { id: '4', weight: 2 },
+  { id: '5', weight: 1 },
+  { id: '1', weight: 0 }
 ]
 
 describe('helper function', () => {
@@ -52,6 +52,7 @@ describe('helper function', () => {
   })
 
   it('getWeights returns weights', () => {
+    expect.assertions(1)
     const weights = helper.getWeights(weightArray, 'volume', 6)
     expect(weights).toStrictEqual(sortedWeightIds)
   })

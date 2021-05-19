@@ -130,7 +130,7 @@ describe('parser function', () => {
 
   it('toTopics adds weighting based on the array', () => {
     expect.assertions(3)
-    const weights = parser.toTopics(data.topics).map(({weight}) => weight)
+    const weights = parser.toTopics(data.topics).map(({ weight }) => weight)
 
     expect(weights).toHaveLength(data.topics.length)
     expect(Math.max(...weights)).toStrictEqual(5)

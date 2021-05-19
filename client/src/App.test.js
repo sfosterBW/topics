@@ -68,4 +68,21 @@ describe('app component', () => {
     const wordcloudLabel = await screen.findByText(/Word cloud/i)
     expect(wordcloudLabel).toBeInTheDocument()
   })
+
+  it('shows a loading status when its loading data', () => {
+    expect.assertions(1)
+    render(<App />, { value: { loading: true } })
+
+    const loading = screen.queryByText(/loading/i)
+    expect(loading).toBeInTheDocument()
+  })
+
+  it('shows an error when an error is throw', () => {
+    expect.assertions(1)
+    const errorMessage = 'oh no'
+    render(<App />, { value: { error: errorMessage } })
+
+    const error = screen.queryByText(errorMessage)
+    expect(error).toBeInTheDocument()
+  })
 })

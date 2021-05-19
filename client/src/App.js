@@ -1,4 +1,6 @@
 import React from 'react'
+
+import Header from './Components/Header/header'
 import WordCloud from './Components/Wordcloud/wordcloud'
 import Stats from './Components/Stats/stats'
 
@@ -11,9 +13,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <header>
-        <h1>My Topics Challenge</h1>
-      </header>
+      <Header title="My Topics Challenge" />
       {loading && <div>Loading...</div>}
       {error && <div>{String(error)}</div>}
       <main>
