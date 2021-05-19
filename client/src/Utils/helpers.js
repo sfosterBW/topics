@@ -16,13 +16,4 @@ const getWeights = (array, field, groupingSize) => {
     }))
 }
 
-// TODO: Add tests for shuffle array
-const shuffleArray = (unshuffledArray) => {
-  const shuffledArray = unshuffledArray
-    .map((a) => ({ sort: Math.random(), value: a }))
-    .sort((a, b) => a.sort - b.sort)
-    .map((a) => a.value)
-  return shuffledArray
-}
-
-export { getSum, getTotal, getWeights, shuffleArray }
+export { getSum, getTotal, getWeights }

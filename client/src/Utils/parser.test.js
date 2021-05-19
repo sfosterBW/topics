@@ -120,7 +120,6 @@ describe('parser function', () => {
     expect(() => parser.toTopic(topicWithoutId)).toThrow(Error('Incorrect or missing id: undefined'))
   })
 
-  // TODO: Add toTopics test
   it('toTopics turns an array of objects into an array of topics', () => {
     expect.assertions(1)
     const topics = parser.toTopics(data.topics)

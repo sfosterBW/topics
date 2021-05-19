@@ -4,9 +4,4 @@ main {
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-around;
-
-}
-
-h1 {
-  margin: 10px;
 }
